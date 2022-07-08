@@ -1,0 +1,10 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+    {% for book in object_list %}
+        <h1>{{book.title}}</h1>
+        <h2>{{book.year}}</h2>
+    {% endfor %}
+
+{% endblock %}
