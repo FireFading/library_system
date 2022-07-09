@@ -1,17 +1,21 @@
 body {
 min-height: 100%;
 background-color: #f9f4f4;
+overflow-y: auto;
+scroll-behavior: auto;
+display: flex;
+flex-direction: column;
 }
 
 html {
-height: -webkit-fill-available;
+  height: 100%;
 }
 
 main {
-height: -webkit-fill-available;
 max-height: 100vh;
-overflow-x: auto;
-overflow-y: hidden;
+overflow-y: auto;
+scroll-behavior: auto;
+flex-grow: 1;
 }
 
 .dropdown-toggle { outline: 0; }
@@ -77,8 +81,8 @@ header {
 
 footer {
     background-color: white;
+
     width: 100%;
-    position: absolute;
     bottom: 0;
 }
 
