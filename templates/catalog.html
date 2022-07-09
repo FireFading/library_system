@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<table class="table table-hover">
+  <table class="table table-hover">
     <thead>
     <tr>
       <th scope="col">Author</th>
@@ -12,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-      {% for book in object_list %}
+      {% for book in books %}
         <tr class="table-light">
           <th scope="row">{{ book.author }}</th>
           <td>{{ book.title }}</td>

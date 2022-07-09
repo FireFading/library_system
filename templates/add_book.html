@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="p-4 p-sm-5 bg-primary-soft rounded">
+        <h2>New Book</h2>
+        <!-- Form START -->
+        <form class="mt-4" method="POST" action="{% url 'new_book' %}">
+            
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="adding_title">Title</label>
+                <input type="text" class="form-control" id="adding_title" name="adding_title" placeholder="Lord of ring" style="font-style: italic" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="adding_author">Author</label>
+                <input type="text" class="form-control" id="adding_author" name="adding_author" placeholder="Tolkin J.R.R." style="font-style: italic" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="number">Number</label>
+                <input type="number" id="number" name="number" class="form-control" min="1" max="20" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="number">Year</label>
+                <input type="number" id="year" name="year" class="form-control" min="1000" max="2022" required>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-secondary">ADD</button>
+                </div>
+            </div>
+
+            
+        </form>
+        <!-- Form END -->
+        <hr>
+
+</div>
+</div>
+{% endblock %}

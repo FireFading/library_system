@@ -1,0 +1,41 @@
+<aside>
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link link-dark" aria-current="page">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'catalog' %}" class="nav-link link-dark">
+              Catalog
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'add' %}" class="nav-link link-dark">
+              Add Book
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <p class="h5" style="margin: 10px; margin-left: 20px;">Find book</p>
+        <form action="{% url 'search' %}" method="get">
+            <div class="filter-wrap" id="filter-wrap">
+                <div class="filter-box">
+        
+                    <div class="fb-sect">
+                      <input class="form-control form-control-sm" type="text" id="title" name="title" placeholder="Enter title.." style="margin:10px; margin-left:0px; font-style: italic;">
+                    </div>
+                    <div class="fb-sect">
+                      <input class="form-control form-control-sm" type="text" id="author" name="author" placeholder="Enter author.." style="margin:10px; margin-left:0px; font-style: italic;">
+                    </div>
+        
+                    <button type="submit" class="btn btn-outline-secondary" style="margin: 25px; margin-top: 5px; width: 50%;">Search</button>
+        
+                </div>
+        </form>
+        
+    </div>
+</aside>
+
