@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 
 from .models import Book
+from .forms import BooksFilterForm
 
 
 class SearchResultsView(ListView):
@@ -20,9 +21,16 @@ class SearchResultsView(ListView):
     
     
 def catalog(request):
-    books = Book.objects.all().order_by("author")
+    books = Book.objects.all()
+    if request.method == 'GET':
+        form = BooksFilterForm(request.GET)
+        if form.is_valid() and form.cleaned_data["ordering"]:
+            books = books.order_by(form.cleaned_data["ordering"])
+    else:
+        form = BooksFilterForm()
     context = {
         "books": books,
+        "form": form,
     }
     return render(request, "catalog.html", context)
 
@@ -49,3 +57,10 @@ def new_book(request):
             return redirect("home")
         
         return redirect("add")
+    
+    
+def delete_book(request, pk):
+    if request.method == "POST":
+        book = Book.objects.get(title=pk)
+        book.delete()
+    return redirect("catalog")
