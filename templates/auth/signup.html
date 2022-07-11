@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block home %}
+
+<div class="container-sm mb-3" style="width: 50%;">
+    <div class="p-4 p-sm-5 bg-primary-soft rounded">
+        <h2 style="text-align: center;">Registration</h2>
+        <!-- Form START -->
+        <form class="mt-4" method="POST" style="width: 90%; margin: auto;">
+            
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="adding_title">Username</label>
+                <input type="text" class="form-control" id="adding_title" name="username" placeholder="Username" style="font-style: italic" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="adding_title">Email</label>
+                <input type="email" class="form-control" id="adding_title" name="email" placeholder="example@example.com" style="font-style: italic" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="adding_author">Password</label>
+                <input type="password" class="form-control" id="adding_author" name="password" placeholder="******" style="font-style: italic" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="adding_author">Password again</label>
+                <input type="password" class="form-control" id="adding_author" name="password2" placeholder="******" style="font-style: italic" required>
+            </div>
+
+            <div class="row align-items-center" style="margin-left: auto;">
+                <div class="col-sm-4" style="margin-left: 150px;">
+                    <button type="submit" class="btn btn-secondary" style="width: 100%; margin: auto;">SIGN UP</button>
+                </div>
+            </div>
+            
+        </form>
+        <!-- Form END -->
+        <hr>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'books',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -113,6 +114,7 @@ STATICFILES_DIRS = [
     'static',
 ]
 
+AUTH_USER_MODEL = 'core.User'
 
 
 # Default primary key field type

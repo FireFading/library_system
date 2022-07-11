@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block home %}
+
+<div class="container-sm mb-3" style="width: 50%;">
+    <div class="p-4 p-sm-5 bg-primary-soft rounded">
+        <h2 style="text-align: center;">Sign In</h2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            
+            <div class="alert alert-danger" role="alert">              
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- Form START -->
+        <form class="mt-4" method="POST" style="width: 90%; margin: auto;">
+            
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="adding_title">Username</label>
+                <input type="text" class="form-control" id="adding_title" name="username" placeholder="Username" style="font-style: italic" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="adding_author">Password</label>
+                <input type="password" class="form-control" id="adding_author" name="password" placeholder="******" style="font-style: italic" required>
+            </div>
+
+            <div class="row align-items-center" style="margin-left: auto;">
+                <div class="col-sm-4" style="margin-left: 150px;">
+                    <button type="submit" class="btn btn-secondary" style="width: 100%; margin: auto;">SIGN IN</button>
+                </div>
+            </div>
+            
+        </form>
+        <!-- Form END -->
+        <hr>
+
+    </div>
+</div>
+
+{% endblock %}

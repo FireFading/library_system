@@ -4,8 +4,13 @@
       <span class="fs-4"><i class="bi bi-app-indicator"></i>Library</span>
     </a>
 
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills" style="margin-right: 5%;">
       <li class="nav-item"><a href="{% url 'catalog' %}" class="nav-link" style="color:black;">Catalog</a></li>
-      <li class="nav-item"><a href="{% url 'add' %}" class="nav-link" style="color:black;">New book</a></li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link" style="color:black;">Log Out</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link" style="color:black;">Sign Up</a></li>
+      <li class="nav-item"><a href="{% url 'signin' %}" class="nav-link" style="color:black;">Sign In</a></li>
+      {% endif %}
     </ul>
 </header>

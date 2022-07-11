@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 from .models import Book
 from .forms import BooksFilterForm
@@ -10,6 +11,7 @@ class SearchResultsView(ListView):
     model = Book
     template_name = 'search_results.html'
     
+    @login_required(login_url='signin')
     def get_queryset(self):
         title = self.request.GET.get('title')
         author = self.request.GET.get('author')
@@ -20,6 +22,7 @@ class SearchResultsView(ListView):
             return Book.objects.filter(Q(author__icontains=author)) if title == "" else Book.objects.filter(Q(title__icontains=title))
     
     
+@login_required(login_url='signin')
 def catalog(request):
     books = Book.objects.all()
     if request.method == 'GET':
@@ -35,14 +38,17 @@ def catalog(request):
     return render(request, "catalog.html", context)
 
 
+@login_required(login_url='signin')
 def home(request):
     return render(request, "home.html")
 
 
+@login_required(login_url='signin')
 def add_book(request):
     return render(request, "add_book.html")
 
 
+@login_required(login_url='signin')
 def new_book(request):
     if request.method == "POST":
         title = request.POST.get("adding_title")
@@ -58,7 +64,8 @@ def new_book(request):
         
         return redirect("add")
     
-    
+
+@login_required(login_url='signin')
 def delete_book(request, pk):
     if request.method == "POST":
         book = Book.objects.get(title=pk)
