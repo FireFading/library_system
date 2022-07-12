@@ -140,16 +140,41 @@ margin: 0;
 
 .mb-2 {
     margin-bottom: .5rem !important;
-  }
-  .row {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(-1 * var(--bs-gutter-y));
-    margin-right: calc(-.5 * var(--bs-gutter-x));
-    margin-left: calc(-.5 * var(--bs-gutter-x));
-  }
-  *, ::after, ::before {
-    box-sizing: border-box;
-  }
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-.5 * var(--bs-gutter-x));
+  margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+.col-lg-5 {
+  width: 30%;
+}
+
+.row-cols-md-2 > * {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.gap-4 {
+  gap: 1.5rem !important;
+}
+.vstack {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.col-lg-6 {
+  flex: 0 0 auto;
+  width: 70%;
+}

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+import wikipedia
+import re
 
 from .models import Book
 from .forms import BooksFilterForm
@@ -11,7 +13,6 @@ class SearchResultsView(ListView):
     model = Book
     template_name = 'search_results.html'
     
-    @login_required(login_url='signin')
     def get_queryset(self):
         title = self.request.GET.get('title')
         author = self.request.GET.get('author')
@@ -48,6 +49,26 @@ def add_book(request):
     return render(request, "add_book.html")
 
 
+def get_description(inf):
+    wikipedia.set_lang("en")
+    try:
+        page = wikipedia.page(inf)
+        wikitext = page.content[:1000]
+        wikimas = wikitext.split(".")
+        wikimas = wikimas[:-1]
+        desc = ""
+        for x in wikimas:
+            if "==" in x:
+                break
+            if len(x.strip()) > 3:
+                desc += f"{x}."
+        desc = re.sub('\([^()]*\)', '', desc)
+        desc = re.sub('\{[^\{\}]*\}', '', desc)
+        return desc
+    except Exception as e:
+        return "This information is unknown. You can add description!"
+
+
 @login_required(login_url='signin')
 def new_book(request):
     if request.method == "POST":
@@ -55,12 +76,14 @@ def new_book(request):
         author = request.POST.get("adding_author")
         number = request.POST.get("number")
         year = request.POST.get("year")
+        description = get_description(str(title))
+        about_author = get_description(str(author))
         
         if title != "" and author != "" and number != "" and year != "":
-            book = Book.objects.create(title=title, author=author, number=number, year=year)
+            book = Book.objects.create(title=title, author=author, number=number, year=year, description=description, about_author=about_author)
             book.save()
             
-            return redirect("home")
+            return redirect("catalog")
         
         return redirect("add")
     
@@ -71,3 +94,9 @@ def delete_book(request, pk):
         book = Book.objects.get(title=pk)
         book.delete()
     return redirect("catalog")
+
+
+def book(request, pk):
+    current_book = Book.objects.get(title=pk)
+    context = {'book': current_book}
+    return render(request, 'book.html', context)

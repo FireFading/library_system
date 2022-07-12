@@ -22,7 +22,7 @@
       {% for book in books %}
         <tr class="table-light">
           <th scope="row">{{ book.author }}</th>
-          <td>{{ book.title }}</td>
+          <td><a href="{{ book.get_absolute_url }}" class="nav-link" style="color:black;">{{ book.title }}</a></td>
           <td>{{ book.year }}</td>
           <td>{{ book.number }}</td>
 
