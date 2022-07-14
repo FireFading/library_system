@@ -98,5 +98,19 @@ def delete_book(request, pk):
 
 def book(request, pk):
     current_book = Book.objects.get(title=pk)
-    context = {'book': current_book}
+    is_editable = 0
+    context = {
+        'book': current_book,
+        'is_editable': is_editable,
+        }
+    return render(request, 'book.html', context)
+
+
+def edit_book(request, pk):
+    current_book = Book.objects.get(title=pk)
+    is_editable = 1
+    context = {
+        'book': current_book,
+        'is_editable': is_editable,
+        }
     return render(request, 'book.html', context)

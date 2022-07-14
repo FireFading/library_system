@@ -80,16 +80,7 @@ text-align: center !important;
 header {
     background-color: white;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-    position: sticky;
-    height:70px;
-    line-height: 26px;
     width: 100%;
-}
-
-.fixed {
-  top: 0px;
-  height: 70px;
-  position: fixed;
 }
 
 header:hover {
@@ -98,10 +89,8 @@ header:hover {
 
 footer {
     background-color: white;
-    line-height: 20px;
     width: 100%;
     bottom: 0;
-    height: 150px;
 }
 
 .bg-primary-soft {
@@ -195,15 +184,3 @@ margin: 0;
   width: 70%;
 }
 
-aside {
-  background-clip: border-box;
-  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-  border-radius: var(--bs-card-border-radius);
-  position: fixed;
-  border-right: 1px solid #D60000;
-}
-
-#content {
-  min-height: 90%;
-  margin-bottom: 0;
-}

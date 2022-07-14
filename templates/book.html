@@ -23,9 +23,11 @@
       <div class="container pt-lg-3 pb-4 pb-sm-5" style="width:100%; margin:16px; margin-top:0px; margin-bottom: 2px;">
         <div class="row justify-content-center">
           <div class="col-md-12" style=" padding-right:35px;">
-            <p>{{ book.description }}..<a href="#" style="color: black;"><i class="bi bi-pencil-fill"></i></a></p>
-            <p style="margin-bottom: 2px;"><strong>About author:</strong><br>{{ book.about_author }}..<a href="#" style="color: black;"><i class="bi bi-pencil-fill"></i></a></p>
-            
+            {% if is_editable == 0%}
+            <p>{{ book.description }}..<a href="edit" style="color: black;"><i class="bi bi-pencil-fill"></i></a></p>
+            <p style="margin-bottom: 2px;"><strong>About author:</strong><br>{{ book.about_author }}..<a href="{% url 'edit' book.title %}" style="color: black;"><i class="bi bi-pencil-fill"></i></a></p>
+            {% else %}
+            {% endif %}
           </div>
         </div>
       </div>

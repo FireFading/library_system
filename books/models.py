@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.html import mark_safe
+from markdown import markdown
 
 
 class Book(models.Model):    
