@@ -9,6 +9,7 @@ from .views import catalog, add_book, home, edit_book, new_book, delete_book, bo
 class BookTest(TestCase):
     
     def setUp(self):
+        self.client = Client()
         self.user = User.objects.create_user(
         username='testuser',
         email='test@email.com',
@@ -20,6 +21,7 @@ class BookTest(TestCase):
             year=2015,
             number=3
         )
+        self.client.force_login(user=self.user)
         
     def test_get_absolute_url(self):
         book = Book.objects.get(id=1)
@@ -29,11 +31,23 @@ class BookTest(TestCase):
         book = Book.objects.get(id=1)
         self.assertEquals(str(book), "testbook by testuser, 2015")
         
+    def test_delete_book(self):
+        self.assertEquals(Book.objects.count(), 1)
+        self.client.post(reverse("delete", args=["testbook"]))
+        self.assertEquals(Book.objects.count(), 0)
+        
+    def test_add_book(self):
+        self.assertEquals(Book.objects.count(), 1)
+        self.client.post(reverse("new_book"), {"adding_title": "testing", "adding_author": "testauthor", "year": "2015", "number": "2"})
+        self.assertEquals(Book.objects.count(), 2)
+        
         
 class BookAcessTest(TestCase):
     def test_anonymous_cannot_see_page(self):
         response = self.client.get(reverse("catalog"))
         self.assertRedirects(response, "/auth/signin/?next=/books-catalog/")
+        response = self.client.get(reverse("home"))
+        self.assertRedirects(response, "/auth/signin/?next=/")
         
     def test_authenticated_user_can_see_page(self):
         user = User.objects.create_user(username="username", email="example@gmail.com", password="some_pass")
@@ -74,9 +88,13 @@ class TestViews(TestCase):
         email='test@email.com',
         password='secret'
         )
+        self.book = Book.objects.create(
+            title='testbook',
+            author='testuser',
+            year=2015,
+            number=3
+        )
         self.client.force_login(user=self.user)
-        self.client.force_login(user=self.user)
-
         
     def test_home(self):
         response = self.client.get(reverse("home"))
@@ -92,4 +110,10 @@ class TestViews(TestCase):
         response = self.client.get(reverse("add"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "add_book.html")
+        
+    def test_detail_book_page(self):
+        response = self.client.get(reverse("book", args=["testbook"]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "book.html")
+        
         

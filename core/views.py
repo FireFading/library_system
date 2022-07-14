@@ -48,6 +48,7 @@ def signin(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'Login successful')
+            
             return redirect('home')
         
         messages.error(request, 'User not found')
