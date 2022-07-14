@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.utils import timezone
+from django.test import TestCase, RequestFactory
 
 from .models import User
 
@@ -12,6 +13,7 @@ class UserTest(TestCase):
             email='test@email.com',
             password='secret'
         )
+        self.factory = RequestFactory()
         
     def test_created_at(self):
         user = User.objects.get(id=1)
@@ -33,3 +35,7 @@ class UserTest(TestCase):
         user = User.objects.get(id=1)
         is_active = user.is_active
         self.assertEquals(is_active, True)
+        
+    def test_user_str(self):
+        user = User.objects.get(id=1)
+        self.assertEqual(str(user), 'test@email.com')
