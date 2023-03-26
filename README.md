@@ -9,6 +9,8 @@
   - & registration and authorization
   > ***
 
+### before run change .env.example to .env and add environment variables
+### to run: `docker compose up --build` in root
 <img width="1509" alt="image" src="https://user-images.githubusercontent.com/91421235/179063343-4132281c-a846-4119-949a-25c62766fef7.png">
 
 <img width="1509" alt="image" src="https://user-images.githubusercontent.com/91421235/179064440-33309b10-e333-4d77-bd5b-12073aa0bb85.png">
