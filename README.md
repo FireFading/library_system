@@ -1,18 +1,13 @@
 ## library system
 ### features:
-  >& search books by author or/and title
-  >***
-  >& watch collection books
-  >***
-  >& add new books
-  >***
-  >& delete books from collection
-  >***
-  >& sort collection by different order
-  >***
-  >& automatic add description and about the author during adding new book
-  >***
-  >& registration and authorization
+  - & search books by author or/and title
+  - & watch collection books
+  - & add new books
+  - & delete books from collection
+  - & sort collection by different order
+  - & automatic add description and about the author during adding new book
+  - & registration and authorization
+  > ***
 
 <img width="1509" alt="image" src="https://user-images.githubusercontent.com/91421235/179063343-4132281c-a846-4119-949a-25c62766fef7.png">
 
