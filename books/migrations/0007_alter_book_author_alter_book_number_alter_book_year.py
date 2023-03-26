@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('books', '0006_book_about_author'),
+        ("books", "0006_book_about_author"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='book',
-            name='author',
+            model_name="book",
+            name="author",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='number',
+            model_name="book",
+            name="number",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='year',
+            model_name="book",
+            name="year",
             field=models.IntegerField(blank=True, default=2022, null=True),
         ),
     ]

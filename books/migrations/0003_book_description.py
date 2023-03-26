@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('books', '0002_alter_book_title'),
+        ("books", "0002_alter_book_title"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='book',
-            name='description',
-            field=models.TextField(default='\n== Database input commands ==\n\n\n=== Database and table management ===\n\n\n=== Using data in a table ===\n\n\n=== Filtering expressions ===\n\n\n=== Altering tables ===\n\n\n=== Managing users and permissions ===\n\n\n== MySQL databases ==\n\n\n=== Reading from tables ===\n\n\n== Databases in object-relational mapping systems ==\n\nThere are ORMs to manage a database:\n\ndjango (web framework)\nSQLObject\nothers\n\n\n=== Defining the object ===\n\n\n==== Django ====\nThis class represents a row of a table named "Table"\n\n\n=== Using a table ===\n\n\n== See also ==\nODBC\nJDBC\nMySQL\nPostgreSQL'),
+            model_name="book",
+            name="description",
+            field=models.TextField(
+                default='\n== Database input commands ==\n\n\n=== Database and table management ===\n\n\n=== Using data in a table ===\n\n\n=== Filtering expressions ===\n\n\n=== Altering tables ===\n\n\n=== Managing users and permissions ===\n\n\n== MySQL databases ==\n\n\n=== Reading from tables ===\n\n\n== Databases in object-relational mapping systems ==\n\nThere are ORMs to manage a database:\n\ndjango (web framework)\nSQLObject\nothers\n\n\n=== Defining the object ===\n\n\n==== Django ====\nThis class represents a row of a table named "Table"\n\n\n=== Using a table ===\n\n\n== See also ==\nODBC\nJDBC\nMySQL\nPostgreSQL'
+            ),
         ),
     ]
