@@ -6,18 +6,20 @@ services:
       - 5432:5432
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-    env_file: .env
+    env_file: .env.example
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   app:
     container_name: app
+    command: >
+      sh -c "python app/manage.py migrate && gunicorn -c /code/gunicorn/conf.py --bind :8000 --chdir /code/app config.wsgi:application"
     restart: always
     build: .
     working_dir: /code
     volumes:
       - .:/code
-    env_file: .env
+    env_file: .env.example
     ports:
       - 8000:80
     depends_on:
@@ -30,7 +32,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf:/etc/nginx/conf.d
-      - ./static:/static
+      - ./app/static:/static
     ports:
       - 80:80
     depends_on:
