@@ -1,5 +1,4 @@
-## library system
-### features:
+### Features:
   - & search books by author or/and title
   - & watch collection books
   - & add new books
@@ -9,11 +8,13 @@
   - & registration and authorization
   > ***
 
-## setup
+## Installation
 - in env.example all variables used in project, change it to .env, several variables that are common, already define as example, secret variables is empty
 
-## run project :
-- `docker compose up --build` in root
+## Run Locally
+```bash
+  docker compose up --build
+```
 
 <img width="1509" alt="image" src="https://user-images.githubusercontent.com/91421235/179063343-4132281c-a846-4119-949a-25c62766fef7.png">
 
