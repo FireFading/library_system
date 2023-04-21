@@ -6,7 +6,6 @@
   - & sort collection by different order
   - & automatic add description and about the author during adding new book
   - & registration and authorization
-  > ***
 
 ## Installation
 - in env.example all variables used in project, change it to .env, several variables that are common, already define as example, secret variables is empty
